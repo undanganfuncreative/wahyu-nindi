@@ -223,7 +223,7 @@
                           <div
                             class="mt-3 text-center mx-auto"
                             style="max-width: 300px"
-                          >
+                            >
                             <div
                               class="text-center mb-3 p-2 animate__animated animate__zoomIn animate__slower"
                               style="border-radius: 0.5rem"
@@ -2110,21 +2110,21 @@
 
     <!--nama tamu-->
     <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        var urlParams = new URLSearchParams(window.location.search);
-        var guestName = urlParams.get("name");
-        if (guestName) {
-          guestName = decodeURIComponent(guestName.replace(/\+/g, " "));
-          guestName = guestName
-            .split(" ")
-            .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-            .join(" ");
-          var namaTamuElement = document.querySelector(".guestNameSlot");
-          if (namaTamuElement) {
-            namaTamuElement.textContent = guestName;
-          }
+      document.addEventListener('DOMContentLoaded', function() {
+    function getGuestName() {
+        const urlParams = new URLSearchParams(window.location.search);
+        return urlParams.get('nama') || 'Tamu Undangan';
+    }
+
+    function updateGuestName() {
+        const guestNameElement = document.getElementById('guestNameSlot');
+        if (guestNameElement) {
+            guestNameElement.textContent = getGuestName();
         }
-      });
+    }
+
+    updateGuestName();
+});
     </script>
   </body>
 </html>
