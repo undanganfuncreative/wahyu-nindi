@@ -2105,5 +2105,24 @@
       data-cf-beacon='{"rayId":"8bb59c9c792a7164","serverTiming":{"name":{"cfL4":true}},"version":"2024.8.0","token":"bb94421b81454f668eb9cf5cf8e9f0cb"}'
       crossorigin="anonymous"
     ></script>
+
+    <!--nama tamu-->
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        var urlParams = new URLSearchParams(window.location.search);
+        var guestName = urlParams.get("name");
+        if (guestName) {
+          guestName = decodeURIComponent(guestName.replace(/\+/g, " "));
+          guestName = guestName
+            .split(" ")
+            .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+            .join(" ");
+          var namaTamuElement = document.querySelector(".nama-tamu");
+          if (namaTamuElement) {
+            namaTamuElement.textContent = guestName;
+          }
+        }
+      });
+    </script>
   </body>
 </html>
