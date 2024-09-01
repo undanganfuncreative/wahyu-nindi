@@ -2082,18 +2082,36 @@
               -1 !== Et.indexOf("Windows Phone")) &&
             window.history &&
             "function" == typeof window.history.pushState;
-        function Pt(t, e) {
-          kt();
-          var n = window.history;
-          try {
-            if (e) {
-              var r = g({}, n.state);
-              (r.key = _t()), n.replaceState(r, "", t);
-            } else n.pushState({ key: yt(mt()) }, "", t);
-          } catch (n) {
-            window.location[e ? "replace" : "assign"](t);
+            function Pt(t, e) {
+              kt();
+              var n = window.history;
+              try {
+                  if (e) {
+                      var r = g({}, n.state);
+                      r.key = *t();
+                      // Hanya ganti state tanpa mengubah URL
+                      n.replaceState(r, "");
+                  } else {
+                      // Simpan URL asli
+                      n.pushState({ key: yt(mt()), originalUrl: window.location.href }, "");
+                  }
+              } catch (n) {
+                  // Jangan ubah lokasi jika terjadi error
+                  console.error("Error manipulating history:", n);
+              }
           }
-        }
+        // function Pt(t, e) {
+        //   kt();
+        //   var n = window.history;
+        //   try {
+        //     if (e) {
+        //       var r = g({}, n.state);
+        //       (r.key = _t()), n.replaceState(r, "", t);
+        //     } else n.pushState({ key: yt(mt()) }, "", t);
+        //   } catch (n) {
+        //     window.location[e ? "replace" : "assign"](t);
+        //   }
+        // }
         function Dt(t) {
           Pt(t, !0);
         }
@@ -13105,7 +13123,7 @@
             getCaptcha: function () {
               var t = this;
               axios
-                .get("/captcha/api/flat")
+                .get("https://satumomen.com/captcha/api/flat")
                 .then(function (e) {
                   t.captcha = e.data;
                 })
@@ -13116,7 +13134,7 @@
             getCountries: function () {
               var t = this;
               axios
-                .get("/api/countries")
+                .get("https://satumomen.com/api/countries")
                 .then(function (e) {
                   t.countries = e.data.data;
                 })
@@ -13127,7 +13145,7 @@
             getOptions: function () {
               var t = this;
               axios
-                .get("/api/guest-books/options/" + this.invitation_id)
+                .get("https://satumomen.com/api/guest-books/options/" + this.invitation_id)
                 .then(function (e) {
                   (t.options = e.data.data),
                     (t.rsvpSettings = t.options.rsvp_settings),
@@ -13164,7 +13182,7 @@
                       });
               axios
                 .get(
-                  "/api/guest-books/code/"
+                  "https://satumomen.com/api/guest-books/code/"
                     .concat(this.code, "?invitation_id=")
                     .concat(this.invitation_id)
                 )
@@ -13209,7 +13227,7 @@
               var t = this;
               axios
                 .get(
-                  "/api/guest-books/" + this.invitation_id + "/?comment=true"
+                  "https://satumomen.com/api/guest-books/" + this.invitation_id + "/?comment=true"
                 )
                 .then(function (e) {
                   t.guest_books = e.data.data;
@@ -13224,7 +13242,7 @@
               var t = this;
               axios
                 .get(
-                  "/api/guest-books/code/"
+                  "https://satumomen.com/api/guest-books/code/"
                     .concat(
                       this.invitation_code.replace("?", ""),
                       "?invitation_id="
@@ -13261,7 +13279,7 @@
                     });
               this.data.id
                 ? axios
-                    .put("/api/guest-books/" + this.data.id, n)
+                    .put("https://satumomen.com/api/guest-books/" + this.data.id, n)
                     .then(function (t) {
                       (t.data.status = 200) &&
                         ((e.status_code = t.data.status_code),
