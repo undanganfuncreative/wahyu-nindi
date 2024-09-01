@@ -239,7 +239,7 @@
                                 class="editable color-accent h5 font-weight-bold mb-1 animate__animated animate__fadeInUp animate__slower"
                                 style="font-size: 16px"
                               >
-                              Tamu Undangan
+                              
                               </div>
                             </div>
                             <button
@@ -2112,8 +2112,8 @@
     <script>
       document.addEventListener('DOMContentLoaded', function() {
     function getGuestName() {
-        const urlParams = new URLSearchParams(window.location.search);
-        return urlParams.get('nama') || 'Tamu Undangan';
+        const hash = window.location.hash.substring(1); // Hapus karakter '#' di awal
+        return decodeURIComponent(hash) || 'Tamu Undangan';
     }
 
     function updateGuestName() {
@@ -2124,6 +2124,9 @@
     }
 
     updateGuestName();
+
+    // Tambahkan event listener untuk menangani perubahan hash
+    window.addEventListener('hashchange', updateGuestName);
 });
     </script>
   </body>
