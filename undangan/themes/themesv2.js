@@ -12,7 +12,7 @@
     d = document.getElementById("loader");
   d && (window.onload = d.style.display = "none");
   var u = r.dataset.guest,
-    m = document.getElementById("guestNameSlot");
+    m = document.getElementById("");
   u && m && (m.innerHTML = u);
   var y = r.dataset.group,
     p = document.getElementById("groupNameSlot");
