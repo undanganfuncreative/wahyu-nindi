@@ -2108,7 +2108,7 @@
       crossorigin="anonymous"
     ></script>
 
-    <!--nama tamu-->
+    <!--nama tamu dari claude.ai
     <script>
       document.addEventListener('DOMContentLoaded', function() {
     function getGuestName() {
@@ -2127,7 +2127,24 @@
 
     // Tambahkan event listener untuk menangani perubahan hash
     window.addEventListener('hashchange', updateGuestName);
+});-->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  function getGuestName(){
+      const urlParams = new URLSearchParams(window.location.search);
+      return urlParams.get('name') || 'Tamu Undangan';
+  }
+
+  function updateGuestName() {
+      const guestNameElement = document.getElementById('guestNameSlot');
+      if (guestNameElement) {
+          guestNameElement.textContent = getGuestName();
+      }
+  }
+
+  updateGuestName();
 });
+
     </script>
   </body>
 </html>
