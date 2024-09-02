@@ -2128,7 +2128,7 @@
     // Tambahkan event listener untuk menangani perubahan hash
     window.addEventListener('hashchange', updateGuestName);
 });-->
-<script>
+<!-- <script>
 document.addEventListener('DOMContentLoaded', function() {
   function getGuestName(){
       const urlParams = new URLSearchParams(window.location.search);
@@ -2145,6 +2145,25 @@ document.addEventListener('DOMContentLoaded', function() {
   updateGuestName();
 });
 
-    </script>
+    </script> -->
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+    // Fungsi untuk mengambil parameter query
+    function getQueryParam(param) {
+        const params = new URLSearchParams(window.location.search);
+        return params.get(param);
+    }
+
+    // Ambil nama tamu dari parameter URL
+    const guestName = getQueryParam('name');
+
+    // Tampilkan nama tamu jika ada
+    if (guestName) {
+        const decodedName = decodeURIComponent(guestName.replace(/\+/g, ' ')); // Ganti + dengan spasi dan decode URI
+        document.getElementById('guestNameSlot').textContent = decodedName;
+    }
+});
+
+  </script>
   </body>
 </html>
